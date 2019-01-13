@@ -1,0 +1,26 @@
+class DestroySub : ZilchComponent
+{
+  //this code for destroying sub on enemy contact
+  [Property]
+  var CollisionArchetypeA : Archetype = Archetype.Jelly;
+  var CollisionArchetypeB : Archetype = Archetype.Crab;
+  
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+  }
+
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    if (event.OtherObject.Archetype == this.CollisionArchetypeA)
+    {
+      this.Owner.Destroy();
+      event.OtherObject.Destroy();
+    }
+    if (event.OtherObject.Archetype == this.CollisionArchetypeB)
+    {
+      this.Owner.Destroy();
+    }
+  }
+}

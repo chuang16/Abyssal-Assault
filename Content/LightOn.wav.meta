@@ -1,0 +1,12 @@
+[Version:1]
+AudioContent 
+{
+	SoundBuilder 
+	{
+		var Name = "LightOn"
+		var ResourceId = 0x5b4c9f32bdeace0b
+		var Streamed = false
+		var Normalize = false
+		var MaxVolume = 0.899999976
+	}
+}

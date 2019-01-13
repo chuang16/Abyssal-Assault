@@ -1,0 +1,20 @@
+[Version:1]
+BinaryContent 
+{
+	BinaryBuilder 
+	{
+		var Name = "FloorCollider"
+		var ResourceId = 0x5b450e6ed8a2e0de
+		var LoaderType = "MultiConvexMesh"
+		var Version = 0
+		var FilterTag = ""
+		var ResourceOwner = ""
+	}
+	ContentTags 
+	{
+		var Tags = Array
+		{
+			"MultiConvexMesh"
+		}
+	}
+}

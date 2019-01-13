@@ -1,0 +1,535 @@
+[Version:1]
+Level 
+{
+	Cog [ContextId:1]
+	{
+		var Name = "LevelSettings"
+		GravityEffect 
+		{
+			var Active = true
+			var WakeUpOnChange = false
+			var DebugDrawEffect = false
+			var LocalSpaceDirection = true
+			var Strength = 10
+			var Direction = Real3{0, -1, 0}
+		}
+		DragEffect 
+		{
+			var Active = true
+			var WakeUpOnChange = false
+			var DebugDrawEffect = false
+			var LinearDamping = 0.200000003
+			var AngularDamping = 0.100000001
+			var LinearDrag = 0
+			var AngularDrag = 0
+		}
+		GridDraw 
+		{
+			var Active = false
+			var HalfCellOffset = false
+			var CellSize = 1
+			var Axis = AxisDirection.Z
+			var Lines = 100
+			var DrawAxisOrigins = true
+			var AlwaysDrawInEditor = true
+			var DrawInGame = false
+			var GridColor = Real4{0.5, 0.5, 0.5, 0.400000006}
+			var GridHighlight = Real4{0, 0, 0, 0.400000006}
+			var HighlightInterval = 10
+			var FollowEditorCamera = false
+		}
+	}
+	Cog [ContextId:2]
+	{
+		var Name = "EditorCamera"
+		Transform 
+		{
+			var Translation = Real3{22, -33, 10}
+			var Scale = Real3{1, 1, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		CameraViewport 
+		{
+			var RenderInEditor = true
+			var RenderInGame = false
+			var RenderOrder = 0
+			var CameraPath = CogPath
+			{
+				var Path = "."
+				var ErrorOnResolveToNull = false
+				var ErrorOnPathCantCompute = false
+				var ErrorOnDirectLinkFail = false
+				var UpdateCogOnPathChange = true
+				var UpdatePathOnCogChange = true
+				var UpdateCogOnInitialize = true
+				var ResolvedNullErrorOccurred = false
+				var Cog = 2
+				var PathPreference0 = CogPathPreference.CogRelative
+				var PathPreference1 = CogPathPreference.SpaceRelative
+				var PathPreference2 = CogPathPreference.Absolute
+			}
+			var RendererPath = CogPath
+			{
+				var Path = ":/RootWidget"
+				var ErrorOnResolveToNull = false
+				var ErrorOnPathCantCompute = false
+				var ErrorOnDirectLinkFail = false
+				var UpdateCogOnPathChange = true
+				var UpdatePathOnCogChange = true
+				var UpdateCogOnInitialize = true
+				var ResolvedNullErrorOccurred = false
+				var Cog = 3
+				var PathPreference0 = CogPathPreference.CogRelative
+				var PathPreference1 = CogPathPreference.SpaceRelative
+				var PathPreference2 = CogPathPreference.Absolute
+			}
+			var ResolutionOrAspect = Integer2{1920, 1080}
+			var RenderToViewport = true
+			var ForwardViewportEvents = false
+			var ViewportScaling = ViewportScaling.Fill
+			var MarginColor = Real4{0, 0, 0, 1}
+			var NormalizedSize = Real2{1, 1}
+			var NormalizedOffset = Real2{0, 0}
+		}
+		Camera 
+		{
+			var NearPlane = 0.100000001
+			var FarPlane = 100
+			var PerspectiveMode = PerspectiveMode.Orthographic
+			var FieldOfView = 45
+			var Size = 956
+		}
+		EditorCameraController 
+		{
+			var ControlMode = ControlMode.ZPlane
+			var Previous3DMode = ControlMode.Orbit
+			var LookDistance = 20
+			var VerticalAngle = 0
+			var HorizontalAngle = 0
+			var LookTarget = Real3{22.1442871, -32.1134949, 1.14786435e-05}
+			var MoveSensitivity = 1
+		}
+	}
+	Cog [ContextId:4]
+	{
+		var Name = "GameCamera"
+		Transform 
+		{
+			var Translation = Real3{250, -250, 10}
+			var Scale = Real3{1, 1, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		SelectionIcon 
+		{
+			var Visible = true
+			var VisibilityEvents = true
+			var Material = "56581e2bb81777be:DebugDrawOnTop"
+			var SpriteSource = "58f8e4be7360cf7c:CameraIcon"
+			var ViewScale = 1
+			var OverrideSelections = true
+		}
+		CameraViewport 
+		{
+			var RenderInEditor = false
+			var RenderInGame = true
+			var RenderOrder = 1
+			var CameraPath = CogPath
+			{
+				var Path = "."
+				var ErrorOnResolveToNull = false
+				var ErrorOnPathCantCompute = false
+				var ErrorOnDirectLinkFail = false
+				var UpdateCogOnPathChange = true
+				var UpdatePathOnCogChange = true
+				var UpdateCogOnInitialize = true
+				var ResolvedNullErrorOccurred = false
+				var Cog = 4
+				var PathPreference0 = CogPathPreference.CogRelative
+				var PathPreference1 = CogPathPreference.SpaceRelative
+				var PathPreference2 = CogPathPreference.Absolute
+			}
+			var RendererPath = CogPath
+			{
+				var Path = ":/RootWidget"
+				var ErrorOnResolveToNull = false
+				var ErrorOnPathCantCompute = false
+				var ErrorOnDirectLinkFail = false
+				var UpdateCogOnPathChange = true
+				var UpdatePathOnCogChange = true
+				var UpdateCogOnInitialize = true
+				var ResolvedNullErrorOccurred = false
+				var Cog = 3
+				var PathPreference0 = CogPathPreference.CogRelative
+				var PathPreference1 = CogPathPreference.SpaceRelative
+				var PathPreference2 = CogPathPreference.Absolute
+			}
+			var ResolutionOrAspect = Integer2{1920, 1080}
+			var RenderToViewport = true
+			var ForwardViewportEvents = false
+			var ViewportScaling = ViewportScaling.Letterbox
+			var MarginColor = Real4{0, 0, 0, 1}
+			var NormalizedSize = Real2{1, 1}
+			var NormalizedOffset = Real2{0, 0}
+		}
+		Camera 
+		{
+			var NearPlane = 0.100000001
+			var FarPlane = 100
+			var PerspectiveMode = PerspectiveMode.Orthographic
+			var FieldOfView = 60
+			var Size = 500
+		}
+		SoundListener 
+		{
+			var Active = true
+			var AttenuationScale = 1
+		}
+		SoundEmitter 
+		{
+			var Volume = 1
+			var Pitch = 0
+			var Attenuator = "57ca8a6ad262efe5:DefaultNoAttenuation"
+			var Directional = false
+			var EmitAngle = 90
+			var RearVolume = 0.200000003
+		}
+		SimpleSound 
+		{
+			var StartPlaying = true
+			var Positional = false
+			var Cue = "5b4c9fcdbc80047f:Bubbles"
+		}
+	}
+	Cog [ContextId:3]
+	{
+		var Name = "RootWidget"
+		Transform 
+		{
+			var Translation = Real3{0, 0, 0}
+			var Scale = Real3{1, 1, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Area 
+		{
+			var Size = Real2{500, 500}
+			var Origin = Location.Center
+		}
+		Sprite 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "582c575af53d18c9:AlphaSprite"
+			var VertexColor = Real4{0.384313762, 0.388235331, 0.388235331, 1}
+			var GeometryMode = SpriteGeometryMode.ZPlane
+			var SpriteSource = "5b479ca154b6e610:Interior"
+			var FlipX = false
+			var FlipY = false
+			var AnimationActive = true
+			var AnimationSpeed = 1
+			var StartFrame = 0
+		}
+		Reactive 
+		{
+			var Active = true
+		}
+		UiRootWidget 
+		{
+			var Active = true
+			var Visible = true
+			var Interactive = true
+			var InLayout = true
+			var OnTop = false
+			var ClipChildren = true
+			var CanTakeFocus = true
+			var LocalColor = Real4{0.384313762, 0.388235331, 0.388235331, 1}
+			var HierarchyColor = Real4{1, 1, 1, 1}
+			var SizePolicyX = UiSizePolicy.Auto
+			var SizePolicyY = UiSizePolicy.Auto
+			var FlexSize = Real2{1, 1}
+			var AbsoluteMinSize = Real2{1, 1}
+			var VerticalAlignment = UiVerticalAlignment.Top
+			var HorizontalAlignment = UiHorizontalAlignment.Left
+			var MarginLeft = 0
+			var MarginTop = 0
+			var MarginRight = 0
+			var MarginBottom = 0
+			var DockMode = UiDockMode.Left
+			var MouseHoverTime = 0.100000001
+			var MouseHoldTime = 1
+			var DoubleClickTime = 0.300000012
+			var DepthSeparation = 0.00999999978
+			var DebugMouseInteraction = false
+		}
+		UiRenderer 
+		{
+			var ClearColor = Real4{0, 0, 0, 0}
+			var EditorDebugDraw = true
+			var GameDebugDraw = true
+		}
+		UiEditorExtension 
+		{
+			var HighlightColor = Real4{1, 0, 0, 1}
+		}
+		UiFillLayout 
+		{
+			var PaddingLeft = 0
+			var PaddingTop = 0
+			var PaddingRight = 0
+			var PaddingBottom = 0
+		}
+		SoundEmitter 
+		{
+			var Volume = 1
+			var Pitch = 0
+			var Attenuator = "57ca8a6ad262efe5:DefaultNoAttenuation"
+			var Directional = false
+			var EmitAngle = 90
+			var RearVolume = 0.200000003
+		}
+		SimpleSound 
+		{
+			var StartPlaying = true
+			var Positional = false
+			var Cue = "5b4f9e78da8e0ed7:Ominous"
+		}
+		Hierarchy 
+		{
+			Cog [Id:0x5b3ecca60d51394b][InheritId:"59b85fdaced18491:UiSpriteText"][ContextId:5]
+			{
+				var Name = "GameOverText"
+				Transform 
+				{
+					var Translation = Real3{-251, 160, 0}
+					var Rotation = Quaternion{0, 0, 0, 1}
+					var Scale = Real3{1, 1, 1}
+				}
+				Area 
+				{
+					var Size = Real2{500, 50}
+				}
+				UiWidget 
+				{
+					var OnTop = false
+					var LocalTranslation = Real2{-251, 160}
+					var Size = Real2{500, 50}
+					var InLayout = false
+					var SizePolicyX = UiSizePolicy.Flex
+					var HorizontalAlignment = UiHorizontalAlignment.Center
+					var MarginTop = 100
+				}
+				SpriteText 
+				{
+					var Text = "Game Over!"
+					var Font = "587b2f7646ba23d5:NotoSans-Bold"
+					var FontSize = 36
+					var TextAlign = TextAlign.Center
+				}
+			}
+			Cog [Id:0x5b3e3d96550d9816][InheritId:"59b85fdaced18491:UiSpriteText"][ContextId:6]
+			{
+				var Name = "GameOverText"
+				Transform 
+				{
+					var Translation = Real3{-250, 100, 0}
+					var Rotation = Quaternion{0, 0, 0, 1}
+					var Scale = Real3{1, 1, 1}
+				}
+				Area 
+				{
+					var Size = Real2{500, 50}
+				}
+				UiWidget 
+				{
+					var OnTop = false
+					var LocalTranslation = Real2{-250, 100}
+					var Size = Real2{500, 50}
+					var InLayout = false
+					var SizePolicyX = UiSizePolicy.Flex
+					var HorizontalAlignment = UiHorizontalAlignment.Center
+					var MarginTop = 100
+				}
+				SpriteText 
+				{
+					var Text = "Your Submarine "
+					var Font = "587b2f7646ba23d5:NotoSans-Bold"
+					var FontSize = 36
+					var TextAlign = TextAlign.Center
+				}
+			}
+			Cog [Id:0x5b3e3f373e6f75f9][InheritId:"59b85fdaced18491:UiSpriteText"][ContextId:7]
+			{
+				var Name = "GameOverText"
+				Transform 
+				{
+					var Translation = Real3{-250, 38, 0}
+					var Rotation = Quaternion{0, 0, 0, 1}
+					var Scale = Real3{1, 1, 1}
+				}
+				Area 
+				{
+					var Size = Real2{500, 50}
+				}
+				UiWidget 
+				{
+					var OnTop = false
+					var LocalTranslation = Real2{-250, 38}
+					var Size = Real2{500, 50}
+					var InLayout = false
+					var SizePolicyX = UiSizePolicy.Flex
+					var HorizontalAlignment = UiHorizontalAlignment.Center
+					var MarginTop = 100
+				}
+				SpriteText 
+				{
+					var Text = "Has Been Sunk"
+					var Font = "587b2f7646ba23d5:NotoSans-Bold"
+					var FontSize = 36
+					var TextAlign = TextAlign.Center
+				}
+			}
+			Cog [Id:0x5b3ecdb9350e34c5][InheritId:"59b85fdaced18491:UiSpriteText"][ContextId:8]
+			{
+				var Name = "ReturnToMenu"
+				Transform 
+				{
+					var Translation = Real3{-250, -94, 0}
+					var Rotation = Quaternion{0, 0, 0, 1}
+					var Scale = Real3{1, 1, 1}
+				}
+				Area 
+				{
+					var Size = Real2{500, 50}
+				}
+				UiWidget 
+				{
+					var OnTop = false
+					var LocalTranslation = Real2{-250, -94}
+					var Size = Real2{500, 50}
+					var InLayout = false
+					var SizePolicyX = UiSizePolicy.Flex
+					var HorizontalAlignment = UiHorizontalAlignment.Center
+					var MarginTop = 100
+				}
+				SpriteText 
+				{
+					var Text = "Return To Menu"
+					var Font = "57343753bb4eaaec:NotoSans-Regular"
+					var FontSize = 26
+					var TextAlign = TextAlign.Center
+				}
+				LoadLevelOnClick [LocallyAdded]
+				{
+					var LevelToLoad = "5b3ac1793aca878d:MainMenu"
+				}
+			}
+			Cog [Id:0x5b439f6c4e1f8d02][InheritId:"59b85fdaced18491:UiSpriteText"][ContextId:9]
+			{
+				var Name = "DisplaySavedDataText"
+				Transform 
+				{
+					var Translation = Real3{-250, -150, 0}
+					var Rotation = Quaternion{0, 0, 0, 1}
+					var Scale = Real3{1, 1, 1}
+				}
+				Area 
+				{
+					var Size = Real2{500, 50}
+				}
+				UiWidget 
+				{
+					var OnTop = false
+					var LocalTranslation = Real2{-250, -150}
+					var Size = Real2{500, 50}
+					var InLayout = false
+					var SizePolicyX = UiSizePolicy.Flex
+					var HorizontalAlignment = UiHorizontalAlignment.Center
+					var MarginTop = 100
+				}
+				SpriteText 
+				{
+					var Text = "Score = 0"
+					var Font = "57343753bb4eaaec:NotoSans-Regular"
+					var FontSize = 26
+					var TextAlign = TextAlign.Center
+				}
+				LoadLevelOnClick [LocallyAdded]
+				{
+					var LevelToLoad = "5b3ac1793aca878d:MainMenu"
+				}
+				DisplaySavedData [LocallyAdded]
+				{
+					var DataSaverComponent = CogPath
+					{
+						var Path = ""
+						var ErrorOnResolveToNull = false
+						var ErrorOnPathCantCompute = false
+						var ErrorOnDirectLinkFail = false
+						var UpdateCogOnPathChange = true
+						var UpdatePathOnCogChange = true
+						var UpdateCogOnInitialize = true
+						var ResolvedNullErrorOccurred = false
+						var Cog = 4294967293
+						var PathPreference0 = CogPathPreference.CogRelative
+						var PathPreference1 = CogPathPreference.SpaceRelative
+						var PathPreference2 = CogPathPreference.Absolute
+					}
+				}
+			}
+		}
+	}
+	Cog [ContextId:10]
+	{
+		var Name = "ExplodeSound"
+		Transform 
+		{
+			var Translation = Real3{22.1442871, -32.1134949, 1.14786435e-05}
+			var Scale = Real3{1, 1, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		SoundEmitter 
+		{
+			var Volume = 1
+			var Pitch = 0
+			var Attenuator = "57ca8a6ad262efe5:DefaultNoAttenuation"
+			var Directional = false
+			var EmitAngle = 90
+			var RearVolume = 0.200000003
+		}
+		SimpleSound 
+		{
+			var StartPlaying = true
+			var Positional = false
+			var Cue = "5b4f96277be8c6a6:Explode"
+		}
+	}
+	Cog [ContextId:11]
+	{
+		var Name = "WarningSound"
+		Transform 
+		{
+			var Translation = Real3{22.1442871, -32.1134949, 1.14786435e-05}
+			var Scale = Real3{1, 1, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		SoundEmitter 
+		{
+			var Volume = 1
+			var Pitch = 0
+			var Attenuator = "57ca8a6ad262efe5:DefaultNoAttenuation"
+			var Directional = false
+			var EmitAngle = 90
+			var RearVolume = 0.200000003
+		}
+		SimpleSound 
+		{
+			var StartPlaying = true
+			var Positional = false
+			var Cue = "5b4f9e78da8e7b59:Warning"
+		}
+	}
+}

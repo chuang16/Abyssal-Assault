@@ -1,0 +1,8 @@
+[Version:1]
+ContentLibrary 
+{
+	var Name = "IDK"
+	var LibraryId = 0x5b3ba633f0049d55
+	var SourceControlType = ""
+	var ReadOnly = false
+}

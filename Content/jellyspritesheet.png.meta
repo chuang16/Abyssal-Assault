@@ -1,0 +1,20 @@
+[Version:1]
+ImageContent 
+{
+	SpriteSourceBuilder 
+	{
+		var Name = "jellyspritesheet"
+		var ResourceId = 0x5b4d52f73557f878
+		var FrameSizeX = 3381
+		var FrameSizeY = 322
+		var FrameCount = 1
+		var FrameDelay = 0.0833333358
+		var OriginX = 1690
+		var OriginY = 161
+		var PixelsPerUnit = 64
+		var Sampling = SpriteSampling.Linear
+		var Looping = true
+		var Slices = Real4{0, 0, 0, 0}
+		var Fill = SpriteFill.Stretch
+	}
+}

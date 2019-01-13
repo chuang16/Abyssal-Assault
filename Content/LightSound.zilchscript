@@ -1,0 +1,24 @@
+class LightSound : ZilchComponent
+{
+  [Dependency]
+  var SoundEmitter : SoundEmitter;
+  
+  //light on and off sound
+  var LightOnSound : SoundCue = SoundCue.LightOn;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    if(Zero.Keyboard.KeyIsPressed(Keys.X))
+    {
+      this.SoundEmitter.PlayCue(this.LightOnSound);
+    }
+    else if(Zero.Keyboard.KeyIsReleased(Keys.X))
+    {
+    }
+  }
+}

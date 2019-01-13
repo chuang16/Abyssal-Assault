@@ -1,0 +1,84 @@
+class LightBehavior : ZilchComponent
+{
+  var InitialEnergy :Real = 0;
+  [Property]
+  var Energy : CogPath;
+  [Property]
+  var EnergyDrain : Real = 0.2;
+  [Property]
+  var Bigdark : CogPath;
+  [Property]
+  var Smalldark : CogPath;
+  [Property]
+  var Darkcolumn1 : CogPath;
+  [Property]
+  var Darkcolumn2 : CogPath;
+  [Property]
+  var Darkcolumn3 : CogPath;
+  var Recharge : Boolean = false;
+  
+  [Dependency]
+  var SoundEmitter : SoundEmitter;
+  
+  //light on and off sound
+  var LightOnSound : SoundCue = SoundCue.LightOn;
+  var PowerDownSound : SoundCue = SoundCue.PowerDown;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    this.InitialEnergy= this.Energy.Transform.Scale.X;
+    if (Zero.Keyboard.KeyIsDown(Keys.X))
+    {
+      this.Bigdark.Sprite.Visible = true;
+      this.Smalldark.Sprite.Visible = false;
+      this.Darkcolumn1.Sprite.Visible= true;
+      this.Darkcolumn2.Sprite.Visible= true;
+      this.Darkcolumn3.Sprite.Visible= true;
+    }
+    else 
+    {
+      this.Bigdark.Sprite.Visible = false;
+      this.Smalldark.Sprite.Visible = true;
+      this.Darkcolumn1.Sprite.Visible= false;
+      this.Darkcolumn2.Sprite.Visible= false;
+      this.Darkcolumn2.Sprite.Visible= false;
+    }
+
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    if (Zero.Keyboard.KeyIsDown(Keys.X)&&(this.Energy.Transform.Scale.X>0.001)&&(this.Recharge != true))
+    {
+      if(Zero.Keyboard.KeyIsPressed(Keys.X))
+      {
+        this.SoundEmitter.PlayCue(this.LightOnSound);
+      }
+      this.Energy.Transform.Scale=Real3(this.Energy.Transform.Scale.X-this.EnergyDrain, this.Energy.Transform.Scale.Y,1);
+      this.Bigdark.Sprite.Visible = true;
+      this.Smalldark.Sprite.Visible = false;
+      this.Darkcolumn1.Sprite.Visible= true;
+      this.Darkcolumn2.Sprite.Visible= true;
+      this.Darkcolumn3.Sprite.Visible= true;
+    }
+    else 
+    {
+      if (this.Energy.Transform.Scale.X<=0.001)
+      {
+        this.SoundEmitter.PlayCue(this.PowerDownSound);
+        this.Recharge =true;
+      }
+      if ((this.Recharge ==true)&&(this.Energy.Transform.Scale.X == this.InitialEnergy))
+      {
+        this.Recharge = false;
+      }
+      this.Energy.Transform.Scale=Real3(Math.Clamp(this.Energy.Transform.Scale.X+this.EnergyDrain,0,this.InitialEnergy), this.Energy.Transform.Scale.Y,1);
+      this.Bigdark.Sprite.Visible = false;
+      this.Smalldark.Sprite.Visible = true;
+      this.Darkcolumn1.Sprite.Visible= false;
+      this.Darkcolumn2.Sprite.Visible= false;
+      this.Darkcolumn3.Sprite.Visible= false;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+[Version:1]
+ImageContent 
+{
+	SpriteSourceBuilder 
+	{
+		var Name = "HealthIcon"
+		var ResourceId = 0x5b4ff7fd9752b01e
+		var FrameSizeX = 500
+		var FrameSizeY = 400
+		var FrameCount = 1
+		var FrameDelay = 0.0833333358
+		var OriginX = 250
+		var OriginY = 200
+		var PixelsPerUnit = 64
+		var Sampling = SpriteSampling.Linear
+		var Looping = true
+		var Slices = Real4{0, 0, 0, 0}
+		var Fill = SpriteFill.Stretch
+	}
+}

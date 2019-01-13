@@ -1,0 +1,53 @@
+class JellyfishBehavior : ZilchComponent
+{
+  var IsGoingDown: Boolean = true;
+  var JellySpeed : Integer = 2;
+  var RandomGenerator : Random = Random ();
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    this.StartJellyfish();
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+  }
+  
+  function OnCollisionStarted (event:CollisionEvent)
+  {
+    this.IsGoingDown=!this.IsGoingDown;
+    
+    if (this.IsGoingDown)
+    {
+      this.Owner.RigidBody.Velocity = Real3 (0,10,0);
+    }
+    else
+    {
+      this.Owner.RigidBody.Velocity = Real3 (0,-10,0);
+    }
+  }
+  
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    
+  }
+  
+  function StartJellyfish()
+  {
+    var randomDirY = this.RandomGenerator.Range(-10.0,10.0);
+    
+    var startingDirection = Real3(0,randomDirY,0);
+    
+    startingDirection = Math.Normalize(startingDirection);
+    
+    startingDirection*=this.JellySpeed;
+    
+    this.Owner.RigidBody.Velocity =startingDirection;
+    
+    if (this.Owner.RigidBody.Velocity.Y > 0)
+    {
+      this.IsGoingDown = false;
+    }
+    else
+    {
+      this.IsGoingDown = true;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+[Version:1]
+ImageContent 
+{
+	SpriteSourceBuilder 
+	{
+		var Name = "Harpoon"
+		var ResourceId = 0x5b4e3d8fc7b00232
+		var FrameSizeX = 300
+		var FrameSizeY = 200
+		var FrameCount = 1
+		var FrameDelay = 0.0833333358
+		var OriginX = 150
+		var OriginY = 100
+		var PixelsPerUnit = 64
+		var Sampling = SpriteSampling.Linear
+		var Looping = true
+		var Slices = Real4{0, 0, 0, 0}
+		var Fill = SpriteFill.Stretch
+	}
+}

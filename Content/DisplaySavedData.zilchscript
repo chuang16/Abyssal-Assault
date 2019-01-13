@@ -1,0 +1,26 @@
+class DisplaySavedData : ZilchComponent
+{
+  var DataCog: Cog = null;
+  var Score: Integer = 0;
+  [Dependency]
+  var SpriteText: SpriteText;
+  [Property]
+  var DataSaverComponent : CogPath;
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    this.DataCog = Zero.ObjectStore.Restore("Data", this.Space);
+    this.Owner.SpriteText.Text = "Score: `this.DataCog.Score.Scorecount`";
+
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    if (Zero.Keyboard.KeyIsDown(Keys.Space))
+    {
+      this.DataCog.DataSaver.Score += 1;
+      this.Owner.SpriteText.Text = "Score: `this.DataCog.DataSaver.Score`";
+      Zero.ObjectStore.Store("Data", this.DataCog);
+    }
+  }
+}

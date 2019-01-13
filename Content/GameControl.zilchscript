@@ -1,0 +1,159 @@
+class GameControl : ZilchComponent
+{
+  var StartingXPos : Real = -10;
+  var CeilingSpacingX : Real = 22.03;
+  var FloorSpacingX : Real = 23.44;
+  var BackgroundSpacingX : Real = 32.8;
+  
+  var RandomGenerator : Random = Random ();
+  
+  var AnglerStartingXPos : Real = 200;
+  
+  var CrabStartingXPos : Real = 100;
+  
+  var Jelly1StartingXPos : Real = 50;
+  
+  var Jelly2StartingXPos : Real = 610;
+  
+  var Jelly3StartingXPos : Real = 2100;
+  
+  var Jelly4StartingXPos : Real = 3500;
+  
+  var Jelly5StartingXPos : Real = 4700;
+  
+  var ObstacleStartingXPos : Real = 25;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    var spawnCeiling = Archetype.FindOrNull("Ceiling");
+    var spawnFloor = Archetype.FindOrNull("Floor");
+    var spawnBackground = Archetype.FindOrNull("Background");
+    var spawnAngler = Archetype.FindOrNull("Angler");
+    var spawnCrab = Archetype.FindOrNull("Crab");
+    var spawnJelly = Archetype.FindOrNull("Jelly");
+    var spawnObstacle = Archetype.FindOrNull("Obstacle");
+    
+    //spawn environment
+    for(var x = 0; x < 500; ++x)
+    {
+      
+        var spawnCeilingPosition = Real3(this.StartingXPos + x * this.CeilingSpacingX, 9.6, -0.1);
+        var spawnFloorPosition = Real3(this.StartingXPos + x * this.FloorSpacingX, -10.4, -0.1);
+        var spawnBackgroundPosition = Real3(this.StartingXPos + x * this.BackgroundSpacingX, 0, -10);
+        
+        this.Space.CreateAtPosition(spawnCeiling,spawnCeilingPosition);
+        var floor = this.Space.CreateAtPosition(spawnFloor,spawnFloorPosition);
+        floor.Transform.Rotation = Math.ToQuaternion(Real3(0,0,Math.ToRadians(180)));
+        this.Space.CreateAtPosition(spawnBackground,spawnBackgroundPosition);
+    }
+    
+    //spawn anglers
+    for(var x = 0; x < 500; ++x)
+    {
+      var anglerSpacingX = this.RandomGenerator.Range(150.0, 200.0);
+      var randomAnglerPosition = this.RandomGenerator.Range(-7.0, 7.4);
+      var spawnAnglerPosition = Real3(this.AnglerStartingXPos + x * anglerSpacingX, randomAnglerPosition, 1);
+      var angler = this.Space.CreateAtPosition(spawnAngler,spawnAnglerPosition);
+      angler.Sprite.CurrentFrame = Math.Floor(this.RandomGenerator.Range (1,8)) as Integer;
+      angler.FindChildByName("AnglerGlow").Sprite.CurrentFrame = angler.Sprite.CurrentFrame;
+    }
+    
+    //spawn top crabs
+    for(var x = 0; x < 250; ++x)
+    {
+      var crabSpacingX = this.RandomGenerator.Range(100.0, 150.0);
+      var spawnCrabPosition = Real3(this.CrabStartingXPos + x * crabSpacingX, 7.4, 0);
+      var newObj = this.Space.CreateAtPosition(spawnCrab,spawnCrabPosition);
+      //newObj.Sprite.FlipY = true;
+      newObj.Transform.Rotation = Math.ToQuaternion(Real3(0,0,Math.ToRadians(180)));
+    }
+    
+    //spawn bottom crabs
+    for(var x = 0; x < 250; ++x)
+    {
+      var crabSpacingX = this.RandomGenerator.Range(100.0,150.0);
+      var spawnCrabPosition = Real3(this.CrabStartingXPos + x * crabSpacingX, -7.2, 0);
+      this.Space.CreateAtPosition(spawnCrab,spawnCrabPosition);
+    }
+    
+    //spawn jellyfish wave 1
+    for(var x = 0; x < 50; ++x)
+    {
+      var jelly1SpacingX = this.RandomGenerator.Range(10.0, 12.0);
+      var randomJelly1Position = this.RandomGenerator.Range(-7.5, 7.4);
+      var spawnJelly1Position = Real3(this.Jelly1StartingXPos + x * jelly1SpacingX, randomJelly1Position, 2);
+      var jelly1 = this.Space.CreateAtPosition(spawnJelly,spawnJelly1Position);
+      jelly1.Sprite.CurrentFrame = Math.Floor(this.RandomGenerator.Range (1,7)) as Integer;
+      jelly1.FindChildByName("Glow").Sprite.CurrentFrame = jelly1.Sprite.CurrentFrame;
+    }
+    
+    //spawn jellyfish wave 2
+    for(var x = 0; x < 150; ++x)
+    {
+      var jelly2SpacingX = this.RandomGenerator.Range(9.0, 11.0);
+      var randomJelly2Position = this.RandomGenerator.Range(-7.5, 7.4);
+      var spawnJelly2Position = Real3(this.Jelly2StartingXPos + x * jelly2SpacingX, randomJelly2Position, 2);
+      var jelly2 = this.Space.CreateAtPosition(spawnJelly,spawnJelly2Position);
+      jelly2.Sprite.CurrentFrame = Math.Floor(this.RandomGenerator.Range (1,7)) as Integer;
+      jelly2.FindChildByName("Glow").Sprite.CurrentFrame = jelly2.Sprite.CurrentFrame;
+    }
+    
+    //spawn jellyfish wave 3
+    for(var x = 0; x < 150; ++x)
+    {
+      var jelly3SpacingX = this.RandomGenerator.Range(8.0, 10.0);
+      var randomJelly3Position = this.RandomGenerator.Range(-7.5, 7.4);
+      var spawnJelly3Position = Real3(this.Jelly3StartingXPos + x * jelly3SpacingX, randomJelly3Position, 2);
+      var jelly3 = this.Space.CreateAtPosition(spawnJelly,spawnJelly3Position);
+      jelly3.Sprite.CurrentFrame = Math.Floor(this.RandomGenerator.Range (1,7)) as Integer;
+      jelly3.FindChildByName("Glow").Sprite.CurrentFrame = jelly3.Sprite.CurrentFrame;
+    }
+    
+    //spawn jellyfish wave 4
+    for(var x = 0; x < 150; ++x)
+    {
+      var jelly4SpacingX = this.RandomGenerator.Range(7.0, 9.0);
+      var randomJelly4Position = this.RandomGenerator.Range(-7.5, 7.4);
+      var spawnJelly4Position = Real3(this.Jelly4StartingXPos + x * jelly4SpacingX, randomJelly4Position, 2);
+      var jelly4 = this.Space.CreateAtPosition(spawnJelly,spawnJelly4Position);
+      jelly4.Sprite.CurrentFrame = Math.Floor(this.RandomGenerator.Range (1,7)) as Integer;
+      jelly4.FindChildByName("Glow").Sprite.CurrentFrame = jelly4.Sprite.CurrentFrame;
+    }
+    
+    //spawn jellyfish wave 5
+    for(var x = 0; x < 500; ++x)
+    {
+      var jelly5SpacingX = this.RandomGenerator.Range(6.0, 8.0);
+      var randomJelly5Position = this.RandomGenerator.Range(-7.5, 7.4);
+      var spawnJelly5Position = Real3(this.Jelly5StartingXPos + x * jelly5SpacingX, randomJelly5Position, 2);
+      var jelly5 = this.Space.CreateAtPosition(spawnJelly,spawnJelly5Position);
+      jelly5.Sprite.CurrentFrame = Math.Floor(this.RandomGenerator.Range (1,7)) as Integer;
+      jelly5.FindChildByName("Glow").Sprite.CurrentFrame = jelly5.Sprite.CurrentFrame;
+    }
+    
+    //spawn top obstacles
+    for(var x = 0; x < 500; ++x)
+    {
+      var obstacleSpacingX = this.RandomGenerator.Range(40.0, 50.0);
+      var spawnObstaclePosition = Real3(this.ObstacleStartingXPos + x * obstacleSpacingX, 8.1, 1.5);
+      this.Space.CreateAtPosition(spawnObstacle,spawnObstaclePosition);
+    }
+    
+    //spawn bottom obstacles
+    for(var x = 0; x < 500; ++x)
+    {
+      var obstacleSpacingX = this.RandomGenerator.Range(40.0, 50.0);
+      var spawnObstaclePosition = Real3(this.ObstacleStartingXPos + x * obstacleSpacingX, -8.3, 1.5);
+      var newObj = this.Space.CreateAtPosition(spawnObstacle,spawnObstaclePosition);
+      //newObj.Sprite.FlipY = true;
+      newObj.Transform.Rotation = Math.ToQuaternion(Real3(0,0,Math.ToRadians(180)));
+      
+    }
+  }
+  
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    
+  }
+}
