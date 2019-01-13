@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "WallBehavior"
+		var ResourceId = 0x5b350a4bd6fe2cb8
+	}
+}
