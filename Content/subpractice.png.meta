@@ -1,0 +1,20 @@
+[Version:1]
+ImageContent 
+{
+	SpriteSourceBuilder 
+	{
+		var Name = "subpractice"
+		var ResourceId = 0x5b3ad49ebef56028
+		var FrameSizeX = 357
+		var FrameSizeY = 255
+		var FrameCount = 1
+		var FrameDelay = 0.0833333358
+		var OriginX = 178
+		var OriginY = 127
+		var PixelsPerUnit = 64
+		var Sampling = SpriteSampling.Linear
+		var Looping = true
+		var Slices = Real4{0, 0, 0, 0}
+		var Fill = SpriteFill.Stretch
+	}
+}

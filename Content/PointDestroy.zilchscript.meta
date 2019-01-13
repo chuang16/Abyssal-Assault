@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "PointDestroy"
+		var ResourceId = 0x5b4ff18ac5ebb7dd
+	}
+}

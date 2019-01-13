@@ -1,0 +1,15 @@
+class LoadLevelOnSpace : ZilchComponent
+{
+  [Property]
+  var LevelToLoad : Level;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Owner, Events.LeftClick, this.OnLeftClick);
+  }
+
+  function OnLeftClick(event : ViewportMouseEvent)
+  {
+    this.Space.LoadLevel(this.LevelToLoad);
+  }
+}

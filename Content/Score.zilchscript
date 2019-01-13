@@ -1,0 +1,39 @@
+class Score : ZilchComponent
+{
+  [Property]
+  var FinalScore : CogPath;
+  [Serialize]
+  var Scorecount : Integer = 0;
+  var SpriteTextComponent : SpriteText;
+  
+  [Dependency]
+  var SoundEmitter : SoundEmitter;
+  
+  var EnemyDeathSound : SoundCue = SoundCue.EnemyDeath;
+  
+  function Initialize(init : CogInitializer)
+  {
+    if(this.Owner.SpriteText != null)
+    {
+      this.Owner.SpriteText.Text = "`this.Scorecount`";
+    }
+  }
+  function SetSpriteText (spritetext : SpriteText)
+  {
+  this.SpriteTextComponent = spritetext;
+  }
+function IncrementScore  (num1 : Integer) 
+{
+  this.SoundEmitter.PlayCue(this.EnemyDeathSound);
+  this.Scorecount+=num1;
+  this.FinalScore.SpriteText.Text= "`this.Scorecount`";
+}
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+  }
+  function DataSave ()
+  {
+  Zero.ObjectStore.Store("Data", this.Owner);
+  }
+  
+}

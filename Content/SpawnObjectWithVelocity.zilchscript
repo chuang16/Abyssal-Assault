@@ -1,0 +1,24 @@
+class SpawnObjectWithVelocity : ZilchComponent
+{
+  [Dependency] var Transform : Transform;
+  //this is the code that causes the projectiles to move at high speed
+  [Property]
+  var ArchetypeToSpawn : Archetype = Archetype.Projectile;
+  
+  [Property]
+  var Direction : Real3 = Real3.XAxis;
+  
+  [Property]
+  var Speed : Real = 25;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Owner, Events.CreateObject, this.OnCreateObject);
+  }
+
+  function OnCreateObject(event : ZilchEvent)
+  {
+    var obj = this.Space.CreateAtPosition(this.ArchetypeToSpawn, this.Transform.Translation+Real3(2, -1.2, 0));
+    obj.RigidBody.Velocity = this.Direction * this.Speed;
+  }
+}

@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "ObstacleDestruction"
+		var ResourceId = 0x5b438c983eb3bd5c
+	}
+}

@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "QuitHandler"
+		var ResourceId = 0x5b3adf74e93ca181
+	}
+}

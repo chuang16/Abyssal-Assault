@@ -1,0 +1,18 @@
+class ObstacleDestruction : ZilchComponent
+{
+  [Property]
+  var CollisionArchetype : Archetype = Archetype.Obstacle;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+  }
+
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    if(event.OtherObject.Archetype == this.CollisionArchetype)
+    {
+      event.OtherObject.Destroy();
+    }
+  }
+}

@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "PlayerHealthBar"
+		var ResourceId = 0x5b3ba9f8c812ee81
+	}
+}

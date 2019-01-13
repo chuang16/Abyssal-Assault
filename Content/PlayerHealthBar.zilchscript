@@ -1,0 +1,152 @@
+class PlayerHealthBar : ZilchComponent
+{
+  var InitialHealth :Real = 0.0;
+  var HealthDrain : Real = 0.2;
+  [Property]
+  var HealthBar : CogPath;
+  [Property]
+  var LevelToLoad : Level;
+  var JellyBeenHit : Cog = null;
+  var CrabBeenHit : Cog = null;
+  var AnglerBeenHit : Cog = null;
+  //Player health
+  [Property]
+  var Health : Integer = 10;
+  
+  [Dependency]
+  var SoundEmitter : SoundEmitter;
+  
+  var Speed : Real = 5.0;
+  var XDir : Real = 0.0;
+  var YDir : Real = 0.0;
+  var Player : Cog = null;
+  var Bullet : Cog = null;
+  var Angler : Archetype = null;
+  var Jelly : Archetype = null;
+  var Crab : Archetype = null;
+  var Obstacle : Archetype = null;
+  var Deathline : Archetype = null;
+  var Recharge : Boolean = false;
+  
+  var FlashTime:Real = 0;
+  
+  //take damage sound
+  var TakeDamageSound : SoundCue = SoundCue.TakeDamage;
+  
+  function Initialize(init : CogInitializer)
+  {
+    this.InitialHealth= this.HealthBar.Transform.Scale.X;
+    this.HealthDrain = this.InitialHealth / this.Health;
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+    
+    this.Player = this.Space.FindObjectByName("Player");
+    this.Bullet = this.Space.FindObjectByName("Bullet");
+    
+    this.Angler = Archetype.FindOrNull("Angler");
+    //if (this.Angler != null)
+    //else 
+    this.Crab = Archetype.FindOrNull("Crab");
+    //else
+    this.Jelly = Archetype.FindOrNull("Jelly");
+    
+    this.Obstacle = Archetype.FindOrNull("Obstacle");
+    
+    this.Deathline = Archetype.FindOrNull("Deathline");
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    //var PlayerPosition : Real3 = this.Player.Transform.Translation;
+    //var distanceX : Real = Owner.Transform.Translation.X - PlayerPosition.X;
+    //var distanceY : Real = Owner.Transform.Translation.Y - PlayerPosition.Y;
+    //if({
+      
+      //  this.Owner.RigidBody.Velocity = Real();
+      //}
+      
+      this.FlashTime -= event.Dt;
+      
+      
+      if(this.FlashTime > 0)
+      {
+        if(this.Owner.Sprite.VertexColor == Real4(1,0,0,1))
+        {
+          this.Owner.Sprite.VertexColor = Real4(1,1,1,1);
+        }
+        else
+        {
+          this.Owner.Sprite.VertexColor = Real4(1,0,0,1);
+        }
+        
+      }
+      else
+      {
+        this.Owner.Sprite.VertexColor = Real4(1,1,1,1);
+      }
+      
+      if(this.Health <= 0){
+        var scorecomponent = this.Space.FindObjectByName ("Score").GetComponentByName("Score") as Score;
+        scorecomponent.DataSave();
+        this.Owner.Destroy;
+        this.Space.LoadLevel(this.LevelToLoad);
+        //Switches the player to the game over screen upon death
+  }
+}
+  
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    if((event.OtherObject.Archetype == this.Angler)&&(this.HealthBar.Transform.Scale.X>0.0)&&(this.AnglerBeenHit != event.OtherObject))
+    {
+      this.AnglerBeenHit = event.OtherObject;
+      this.SoundEmitter.PlayCue(this.TakeDamageSound);
+      this.Health -= 1;
+      var newScale = this.HealthBar.Transform.Scale;
+      newScale.Y = this.Health/5.0;
+      this.HealthBar.Transform.Scale = newScale;
+      this.FlashTime = 0.85;
+      //this.HealthBar.Transform.Scale=Real3(this.HealthBar.Transform.Scale.X-this.HealthDrain, this.HealthBar.Transform.Scale.Y,1);
+      //this.HealthBar.Transform.Translation=Real3(this.HealthBar.Transform.Translation.X-this.HealthDrain/2,this.HealthBar.Transform.Translation.Y,this.HealthBar.Transform.Translation.Z);
+      
+    }
+    else if ((event.OtherObject.Archetype == this.Jelly)&&(this.HealthBar.Transform.Scale.X>0.0)&&(this.JellyBeenHit != event.OtherObject))
+    {
+      this.JellyBeenHit = event.OtherObject;
+      this.SoundEmitter.PlayCue(this.TakeDamageSound);
+      
+      this.Health -= 1;
+      
+      var newScale = this.HealthBar.Transform.Scale;
+      newScale.Y = this.Health/5.0;
+      this.HealthBar.Transform.Scale = newScale;
+      this.FlashTime = 0.85;
+      //this.HealthBar.Transform.Scale=Real3(this.HealthBar.Transform.Scale.X-this.HealthDrain, this.HealthBar.Transform.Scale.Y,1);
+      //this.HealthBar.Transform.Translation=Real3(this.HealthBar.Transform.Translation.X-this.HealthDrain/2,this.HealthBar.Transform.Translation.Y,this.HealthBar.Transform.Translation.Z);
+    }
+    else if ((event.OtherObject.Archetype == this.Crab)&&(this.HealthBar.Transform.Scale.X>0.0)&&(this.CrabBeenHit != event.OtherObject))
+    {
+      this.CrabBeenHit = event.OtherObject;
+      this.SoundEmitter.PlayCue(this.TakeDamageSound);
+      this.Health -= 1;
+      
+      var newScale = this.HealthBar.Transform.Scale;
+      newScale.Y = this.Health/5.0;
+      this.HealthBar.Transform.Scale = newScale;
+      this.FlashTime = 0.85;
+      //this.HealthBar.Transform.Scale=Real3(this.HealthBar.Transform.Scale.X-this.HealthDrain, this.HealthBar.Transform.Scale.Y,1);
+      //this.HealthBar.Transform.Translation=Real3(this.HealthBar.Transform.Translation.X-this.HealthDrain/2,this.HealthBar.Transform.Translation.Y,this.HealthBar.Transform.Translation.Z);
+      //the above system defines how much damage the player takes on contact
+    }
+    else if ((event.OtherObject.Archetype == this.Deathline)&&(this.HealthBar.Transform.Scale.X>0.0))
+    {
+      this.Health -= 100;
+      this.HealthBar.Transform.Scale=Real3(this.HealthBar.Transform.Scale.X-this.HealthDrain, this.HealthBar.Transform.Scale.Y,1);
+      //the above system defines how much damage the player takes on contact
+    }
+    //else if ((event.OtherObject.Archetype == this.Obstacle)&&(this.HealthBar.Transform.Scale.X>0.0))
+    //{
+     // this.Health -= 1;
+      //this.HealthBar.Transform.Scale=Real3(this.HealthBar.Transform.Scale.X-this.HealthDrain, this.HealthBar.Transform.Scale.Y,1);
+    //}
+  }
+}

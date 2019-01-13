@@ -1,0 +1,12 @@
+class RequestQuitOnClick : ZilchComponent
+{
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Owner, Events.LeftClick, this.OnLeftClick);
+  }
+
+  function OnLeftClick(event : ViewportMouseEvent)
+  {
+    this.GameSession.Quit();
+  }
+}

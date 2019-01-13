@@ -1,0 +1,20 @@
+[Version:1]
+ImageContent 
+{
+	SpriteSourceBuilder 
+	{
+		var Name = "Smalldark"
+		var ResourceId = 0x5b3fb8de5b413d20
+		var FrameSizeX = 3092
+		var FrameSizeY = 2222
+		var FrameCount = 1
+		var FrameDelay = 0.0833333358
+		var OriginX = 1546
+		var OriginY = 1111
+		var PixelsPerUnit = 64
+		var Sampling = SpriteSampling.Linear
+		var Looping = true
+		var Slices = Real4{0, 0, 0, 0}
+		var Fill = SpriteFill.Stretch
+	}
+}

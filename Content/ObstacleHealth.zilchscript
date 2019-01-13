@@ -1,0 +1,60 @@
+class ObstacleHealth : ZilchComponent
+{
+  [Property]
+  var JellyScore : Integer = 0;
+  [Property]
+  var CrabScore: Integer = 0;
+  [Property]
+  var AnglerScore : Integer = 0;
+  [Property]
+  var Health : Integer = 1;
+  //thw above variable is the amount of health the object has
+  var Speed : Real = 5.0;
+  var XDir : Real = 0.0;
+  var YDir : Real = 0.0;
+  var Enemy : Cog = null;
+  var Bullet : Cog = null;
+  var Projectile : Archetype = null;
+  var Character : Archetype = null;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+    
+    this.Enemy = this.Space.FindObjectByName("Enemy");
+    this.Bullet = this.Space.FindObjectByName("Bullet");
+    this.Projectile = Archetype.FindOrNull("Projectile");
+    this.Character = Archetype.FindOrNull("Character");
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    if(this.Health <= 0)
+    {
+      this.Owner.Destroy();
+      var scoreComponent = this.Space.FindObjectByName("Score").GetComponentByName("Score") as Score; 
+      if (this.JellyScore!=0)
+      {
+        scoreComponent.IncrementScore(this.JellyScore);
+      }
+      else if (this.CrabScore!=0)
+      {
+        scoreComponent.IncrementScore(this.CrabScore);
+      }
+      else if (this.AnglerScore!=0)
+      {
+        scoreComponent.IncrementScore(this.AnglerScore);
+      }
+    }
+  }
+  
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    if(event.OtherObject.Archetype == this.Character)
+    {
+      this.Health -= 10;
+      //enemy dies when colliding with character
+    }
+  }
+}
