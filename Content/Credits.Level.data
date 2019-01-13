@@ -1,0 +1,1074 @@
+[Version:1]
+Level 
+{
+	Cog [ContextId:1]
+	{
+		var Name = "LevelSettings"
+		GravityEffect 
+		{
+			var Active = true
+			var WakeUpOnChange = false
+			var DebugDrawEffect = false
+			var LocalSpaceDirection = true
+			var Strength = 10
+			var Direction = Real3{0, -1, 0}
+		}
+		DragEffect 
+		{
+			var Active = true
+			var WakeUpOnChange = false
+			var DebugDrawEffect = false
+			var LinearDamping = 0.200000003
+			var AngularDamping = 0.100000001
+			var LinearDrag = 0
+			var AngularDrag = 0
+		}
+		GridDraw 
+		{
+			var Active = false
+			var HalfCellOffset = false
+			var CellSize = 1
+			var Axis = AxisDirection.Z
+			var Lines = 100
+			var DrawAxisOrigins = true
+			var AlwaysDrawInEditor = true
+			var DrawInGame = false
+			var GridColor = Real4{0.5, 0.5, 0.5, 0.400000006}
+			var GridHighlight = Real4{0, 0, 0, 0.400000006}
+			var HighlightInterval = 10
+			var FollowEditorCamera = false
+		}
+		QuitHandler 
+		{
+		}
+		LoadLevelOnKeystroke 
+		{
+			var Key = Keys.Escape
+			var LevelToLoad = "5b3ac1793aca878d:MainMenu"
+		}
+	}
+	Cog [ContextId:2]
+	{
+		var Name = "EditorCamera"
+		Transform 
+		{
+			var Translation = Real3{250, -275, 10}
+			var Scale = Real3{1, 1, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		CameraViewport 
+		{
+			var RenderInEditor = true
+			var RenderInGame = false
+			var RenderOrder = 0
+			var CameraPath = CogPath
+			{
+				var Path = "."
+				var ErrorOnResolveToNull = false
+				var ErrorOnPathCantCompute = false
+				var ErrorOnDirectLinkFail = false
+				var UpdateCogOnPathChange = true
+				var UpdatePathOnCogChange = true
+				var UpdateCogOnInitialize = true
+				var ResolvedNullErrorOccurred = false
+				var Cog = 2
+				var PathPreference0 = CogPathPreference.CogRelative
+				var PathPreference1 = CogPathPreference.SpaceRelative
+				var PathPreference2 = CogPathPreference.Absolute
+			}
+			var RendererPath = CogPath
+			{
+				var Path = ":/RootWidget"
+				var ErrorOnResolveToNull = false
+				var ErrorOnPathCantCompute = false
+				var ErrorOnDirectLinkFail = false
+				var UpdateCogOnPathChange = true
+				var UpdatePathOnCogChange = true
+				var UpdateCogOnInitialize = true
+				var ResolvedNullErrorOccurred = false
+				var Cog = 3
+				var PathPreference0 = CogPathPreference.CogRelative
+				var PathPreference1 = CogPathPreference.SpaceRelative
+				var PathPreference2 = CogPathPreference.Absolute
+			}
+			var ResolutionOrAspect = Integer2{1920, 1080}
+			var RenderToViewport = true
+			var ForwardViewportEvents = false
+			var ViewportScaling = ViewportScaling.Fill
+			var MarginColor = Real4{0, 0, 0, 1}
+			var NormalizedSize = Real2{1, 1}
+			var NormalizedOffset = Real2{0, 0}
+		}
+		Camera 
+		{
+			var NearPlane = 0.100000001
+			var FarPlane = 100
+			var PerspectiveMode = PerspectiveMode.Orthographic
+			var FieldOfView = 45
+			var Size = 1342
+		}
+		EditorCameraController 
+		{
+			var ControlMode = ControlMode.ZPlane
+			var Previous3DMode = ControlMode.Orbit
+			var LookDistance = 20
+			var VerticalAngle = 0
+			var HorizontalAngle = 0
+			var LookTarget = Real3{250, -274.333282, -3.81469727e-06}
+			var MoveSensitivity = 1
+		}
+	}
+	Cog [ContextId:4]
+	{
+		var Name = "GameCamera"
+		Transform 
+		{
+			var Translation = Real3{250, -250, 10}
+			var Scale = Real3{1, 1, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		SelectionIcon 
+		{
+			var Visible = true
+			var VisibilityEvents = true
+			var Material = "56581e2bb81777be:DebugDrawOnTop"
+			var SpriteSource = "58f8e4be7360cf7c:CameraIcon"
+			var ViewScale = 1
+			var OverrideSelections = true
+		}
+		CameraViewport 
+		{
+			var RenderInEditor = false
+			var RenderInGame = true
+			var RenderOrder = 1
+			var CameraPath = CogPath
+			{
+				var Path = "."
+				var ErrorOnResolveToNull = false
+				var ErrorOnPathCantCompute = false
+				var ErrorOnDirectLinkFail = false
+				var UpdateCogOnPathChange = true
+				var UpdatePathOnCogChange = true
+				var UpdateCogOnInitialize = true
+				var ResolvedNullErrorOccurred = false
+				var Cog = 4
+				var PathPreference0 = CogPathPreference.CogRelative
+				var PathPreference1 = CogPathPreference.SpaceRelative
+				var PathPreference2 = CogPathPreference.Absolute
+			}
+			var RendererPath = CogPath
+			{
+				var Path = ":/RootWidget"
+				var ErrorOnResolveToNull = false
+				var ErrorOnPathCantCompute = false
+				var ErrorOnDirectLinkFail = false
+				var UpdateCogOnPathChange = true
+				var UpdatePathOnCogChange = true
+				var UpdateCogOnInitialize = true
+				var ResolvedNullErrorOccurred = false
+				var Cog = 3
+				var PathPreference0 = CogPathPreference.CogRelative
+				var PathPreference1 = CogPathPreference.SpaceRelative
+				var PathPreference2 = CogPathPreference.Absolute
+			}
+			var ResolutionOrAspect = Integer2{1920, 1080}
+			var RenderToViewport = true
+			var ForwardViewportEvents = false
+			var ViewportScaling = ViewportScaling.Letterbox
+			var MarginColor = Real4{0, 0, 0, 1}
+			var NormalizedSize = Real2{1, 1}
+			var NormalizedOffset = Real2{0, 0}
+		}
+		Camera 
+		{
+			var NearPlane = 0.100000001
+			var FarPlane = 100
+			var PerspectiveMode = PerspectiveMode.Orthographic
+			var FieldOfView = 60
+			var Size = 500
+		}
+		SoundListener 
+		{
+			var Active = true
+			var AttenuationScale = 1
+		}
+		SoundEmitter 
+		{
+			var Volume = 1
+			var Pitch = 0
+			var Attenuator = "57ca8a6ad262efe5:DefaultNoAttenuation"
+			var Directional = false
+			var EmitAngle = 90
+			var RearVolume = 0.200000003
+		}
+		SimpleSound 
+		{
+			var StartPlaying = true
+			var Positional = false
+			var Cue = "5b50893ffe837c32:Menu"
+		}
+	}
+	Cog [ContextId:3]
+	{
+		var Name = "RootWidget"
+		Transform 
+		{
+			var Translation = Real3{0, 0, 0}
+			var Scale = Real3{1, 1, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Area 
+		{
+			var Size = Real2{500, 500}
+			var Origin = Location.TopLeft
+		}
+		Sprite 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "582c575af53d18c9:AlphaSprite"
+			var VertexColor = Real4{0.384313762, 0.388235331, 0.388235331, 1}
+			var GeometryMode = SpriteGeometryMode.ZPlane
+			var SpriteSource = "5b479ca154b6e610:Interior"
+			var FlipX = false
+			var FlipY = false
+			var AnimationActive = true
+			var AnimationSpeed = 1
+			var StartFrame = 0
+		}
+		Reactive 
+		{
+			var Active = true
+		}
+		UiRootWidget 
+		{
+			var Active = true
+			var Visible = true
+			var Interactive = true
+			var InLayout = true
+			var OnTop = false
+			var ClipChildren = true
+			var CanTakeFocus = true
+			var LocalColor = Real4{0.384313762, 0.388235331, 0.388235331, 1}
+			var HierarchyColor = Real4{1, 1, 1, 1}
+			var SizePolicyX = UiSizePolicy.Auto
+			var SizePolicyY = UiSizePolicy.Auto
+			var FlexSize = Real2{1, 1}
+			var AbsoluteMinSize = Real2{1, 1}
+			var VerticalAlignment = UiVerticalAlignment.Top
+			var HorizontalAlignment = UiHorizontalAlignment.Left
+			var MarginLeft = 0
+			var MarginTop = 0
+			var MarginRight = 0
+			var MarginBottom = 0
+			var DockMode = UiDockMode.Left
+			var MouseHoverTime = 0.100000001
+			var MouseHoldTime = 1
+			var DoubleClickTime = 0.300000012
+			var DepthSeparation = 0.00999999978
+			var DebugMouseInteraction = false
+		}
+		UiRenderer 
+		{
+			var ClearColor = Real4{0, 0, 0, 0}
+			var EditorDebugDraw = true
+			var GameDebugDraw = true
+		}
+		UiEditorExtension 
+		{
+			var HighlightColor = Real4{1, 0, 0, 1}
+		}
+		UiFillLayout 
+		{
+			var PaddingLeft = 0
+			var PaddingTop = 0
+			var PaddingRight = 0
+			var PaddingBottom = 0
+		}
+		SoundEmitter 
+		{
+			var Volume = 1
+			var Pitch = 0
+			var Attenuator = "57ca8a6ad262efe5:DefaultNoAttenuation"
+			var Directional = false
+			var EmitAngle = 90
+			var RearVolume = 0.200000003
+		}
+		SimpleSound 
+		{
+			var StartPlaying = true
+			var Positional = false
+			var Cue = "5b4c9fcdbc80047f:Bubbles"
+		}
+		Hierarchy 
+		{
+			Cog [Id:0x5b3ac1c1c878ffaa][InheritId:"59b85f2ec7f74a58:UiSprite"][ContextId:5]
+			{
+				var Name = "MenuWindow"
+				Transform 
+				{
+					var Translation = Real3{250, -250, 0}
+					var Rotation = Quaternion{0, 0, 0, 1}
+					var Scale = Real3{1.58844185, 1.80242109, 1}
+				}
+				Area 
+				{
+					var Origin = Location.Center
+					var Size = Real2{200, 201}
+				}
+				UiWidget 
+				{
+					var LocalTranslation = Real2{250, -250}
+					var Size = Real2{200, 201}
+					var LocalColor = Real4{1, 1, 1, 0.100000001}
+					var InLayout = true
+					var SizePolicyY = UiSizePolicy.Auto
+					var VerticalAlignment = UiVerticalAlignment.Center
+					var HorizontalAlignment = UiHorizontalAlignment.Center
+				}
+				Sprite 
+				{
+					var VertexColor = Real4{1, 1, 1, 0.100000001}
+				}
+				UiStackLayout [LocallyAdded]
+				{
+					var PaddingLeft = 4
+					var PaddingTop = 4
+					var PaddingRight = 4
+					var PaddingBottom = 4
+					var StackDirection = UiStackLayoutDirection.TopToBottom
+					var Spacing = Real2{0, 4}
+				}
+				Hierarchy [ChildOrderOverride]
+				{
+					Cog [Id:0x5b3ac2c2f62fc32d][InheritId:"59b85fdaced18491:UiSpriteText"][LocallyAdded][ContextId:6]
+					{
+						var Name = "MenuTitle"
+						Transform 
+						{
+							var Translation = Real3{-96, 97, -7.62939453e-06}
+							var Rotation = Quaternion{0, 0, 0, 1}
+							var Scale = Real3{1, 1, 1}
+						}
+						Area 
+						{
+							var Size = Real2{192, 41}
+						}
+						UiWidget 
+						{
+							var Size = Real2{192, 41}
+							var LocalColor = Real4{1, 1, 1, 1}
+							var SizePolicyX = UiSizePolicy.Flex
+						}
+						SpriteText 
+						{
+							var VertexColor = Real4{1, 1, 1, 1}
+							var Text = "Credits"
+							var FontSize = 30
+							var TextAlign = TextAlign.Center
+						}
+					}
+					Cog [Id:0x5b3adaf5182b63e6][InheritId:"59b85f2ec7f74a58:UiSprite"][LocallyAdded][ContextId:7]
+					{
+						var Name = "CreditsBlock"
+						Transform 
+						{
+							var Translation = Real3{-96, 52, 0}
+							var Rotation = Quaternion{0, 0, 0, 1}
+							var Scale = Real3{1, 1, 1}
+						}
+						Area 
+						{
+							var Size = Real2{192, 104}
+						}
+						UiWidget 
+						{
+							var Size = Real2{192, 104}
+							var SizePolicyX = UiSizePolicy.Flex
+							var SizePolicyY = UiSizePolicy.Auto
+						}
+						UiStackLayout [LocallyAdded]
+						{
+							var PaddingLeft = 0
+							var PaddingTop = 0
+							var PaddingRight = 0
+							var PaddingBottom = 0
+							var StackDirection = UiStackLayoutDirection.TopToBottom
+							var Spacing = Real2{0, 12}
+						}
+						Hierarchy [ChildOrderOverride]
+						{
+							Cog [Id:0x5b3adb0f3d448e16][InheritId:"59b85f2ec7f74a58:UiSprite"][LocallyAdded][ContextId:8]
+							{
+								var Name = "CreditListing"
+								Transform 
+								{
+									var Translation = Real3{0, 0, 0}
+									var Rotation = Quaternion{0, 0, 0, 1}
+									var Scale = Real3{1, 1, 1}
+								}
+								Area 
+								{
+									var Size = Real2{192, 16}
+								}
+								UiWidget 
+								{
+									var Size = Real2{192, 16}
+									var SizePolicyX = UiSizePolicy.Flex
+									var SizePolicyY = UiSizePolicy.Auto
+								}
+								UiStackLayout [LocallyAdded]
+								{
+									var PaddingLeft = 0
+									var PaddingTop = 0
+									var PaddingRight = 0
+									var PaddingBottom = 0
+									var StackDirection = UiStackLayoutDirection.LeftToRight
+									var Spacing = Real2{16, 0}
+								}
+								Hierarchy [ChildOrderOverride]
+								{
+									Cog [Id:0x5b3adbe0c8b2dce7][InheritId:"59b85fdaced18491:UiSpriteText"][LocallyAdded][ContextId:9]
+									{
+										var Name = "Role"
+										Transform 
+										{
+											var Translation = Real3{0, 0, 0}
+											var Rotation = Quaternion{0, 0, 0, 1}
+											var Scale = Real3{1, 1, 1}
+										}
+										Area 
+										{
+											var Size = Real2{88, 16}
+										}
+										UiWidget 
+										{
+											var Size = Real2{88, 16}
+											var SizePolicyX = UiSizePolicy.Flex
+											var VerticalAlignment = UiVerticalAlignment.Center
+										}
+										SpriteText 
+										{
+											var Text = "Game Designer"
+											var TextAlign = TextAlign.Right
+										}
+									}
+									Cog [Id:0x5b3adb20341c16e9][InheritId:"59b85f2ec7f74a58:UiSprite"][LocallyAdded][ContextId:10]
+									{
+										var Name = "ListOfPeople"
+										Transform 
+										{
+											var Translation = Real3{104, 0, 0}
+											var Rotation = Quaternion{0, 0, 0, 1}
+											var Scale = Real3{1, 1, 1}
+										}
+										Area 
+										{
+											var Size = Real2{88, 16}
+										}
+										UiWidget 
+										{
+											var Size = Real2{88, 16}
+											var SizePolicyX = UiSizePolicy.Flex
+											var SizePolicyY = UiSizePolicy.Auto
+											var VerticalAlignment = UiVerticalAlignment.Center
+										}
+										UiStackLayout [LocallyAdded]
+										{
+											var PaddingLeft = 0
+											var PaddingTop = 0
+											var PaddingRight = 0
+											var PaddingBottom = 0
+											var StackDirection = UiStackLayoutDirection.TopToBottom
+											var Spacing = Real2{0, 0}
+										}
+										Hierarchy [ChildOrderOverride]
+										{
+											Cog [Id:0x5b3adbb5d985c83a][InheritId:"59b85fdaced18491:UiSpriteText"][LocallyAdded][ContextId:11]
+											{
+												var Name = "Person"
+												Transform 
+												{
+													var Translation = Real3{0, 0, 0}
+													var Rotation = Quaternion{0, 0, 0, 1}
+													var Scale = Real3{1, 1, 1}
+												}
+												Area 
+												{
+													var Size = Real2{88, 16}
+												}
+												UiWidget 
+												{
+													var Size = Real2{88, 16}
+													var SizePolicyX = UiSizePolicy.Flex
+													var VerticalAlignment = UiVerticalAlignment.Center
+												}
+												SpriteText 
+												{
+													var Text = "Mitchell Spanel"
+													var TextAlign = TextAlign.Left
+												}
+											}
+										}
+										Sprite [LocallyRemoved]
+										{
+										}
+									}
+								}
+								Sprite [LocallyRemoved]
+								{
+								}
+							}
+							Cog [Id:0x5b3ad40cea76b97e][InheritId:"59b85f2ec7f74a58:UiSprite"][LocallyAdded][ContextId:12]
+							{
+								var Name = "CreditListing"
+								Transform 
+								{
+									var Translation = Real3{0, -28, 0}
+									var Rotation = Quaternion{0, 0, 0, 1}
+									var Scale = Real3{1, 1, 1}
+								}
+								Area 
+								{
+									var Size = Real2{192, 32}
+								}
+								UiWidget 
+								{
+									var Size = Real2{192, 32}
+									var SizePolicyX = UiSizePolicy.Flex
+									var SizePolicyY = UiSizePolicy.Auto
+								}
+								UiStackLayout [LocallyAdded]
+								{
+									var PaddingLeft = 0
+									var PaddingTop = 0
+									var PaddingRight = 0
+									var PaddingBottom = 0
+									var StackDirection = UiStackLayoutDirection.LeftToRight
+									var Spacing = Real2{16, 0}
+								}
+								Hierarchy [ChildOrderOverride]
+								{
+									Cog [Id:0x5b3adbe0c8b2dce7][InheritId:"59b85fdaced18491:UiSpriteText"][LocallyAdded][ContextId:13]
+									{
+										var Name = "Role"
+										Transform 
+										{
+											var Translation = Real3{0, -8, 0}
+											var Rotation = Quaternion{0, 0, 0, 1}
+											var Scale = Real3{1, 1, 1}
+										}
+										Area 
+										{
+											var Size = Real2{88, 16}
+										}
+										UiWidget 
+										{
+											var Size = Real2{88, 16}
+											var SizePolicyX = UiSizePolicy.Flex
+											var VerticalAlignment = UiVerticalAlignment.Center
+										}
+										SpriteText 
+										{
+											var Text = "Artist"
+											var TextAlign = TextAlign.Right
+										}
+									}
+									Cog [Id:0x5b3adb20341c16e9][InheritId:"59b85f2ec7f74a58:UiSprite"][LocallyAdded][ContextId:14]
+									{
+										var Name = "ListOfPeople"
+										Transform 
+										{
+											var Translation = Real3{104, 0, 0}
+											var Rotation = Quaternion{0, 0, 0, 1}
+											var Scale = Real3{1, 1, 1}
+										}
+										Area 
+										{
+											var Size = Real2{88, 32}
+										}
+										UiWidget 
+										{
+											var Size = Real2{88, 32}
+											var SizePolicyX = UiSizePolicy.Flex
+											var SizePolicyY = UiSizePolicy.Auto
+											var VerticalAlignment = UiVerticalAlignment.Center
+										}
+										UiStackLayout [LocallyAdded]
+										{
+											var PaddingLeft = 0
+											var PaddingTop = 0
+											var PaddingRight = 0
+											var PaddingBottom = 0
+											var StackDirection = UiStackLayoutDirection.TopToBottom
+											var Spacing = Real2{0, 0}
+										}
+										Hierarchy [ChildOrderOverride]
+										{
+											Cog [Id:0x5b3ad477ec408cfb][InheritId:"59b85fdaced18491:UiSpriteText"][LocallyAdded][ContextId:15]
+											{
+												var Name = "Person"
+												Transform 
+												{
+													var Translation = Real3{0, 0, 0}
+													var Rotation = Quaternion{0, 0, 0, 1}
+													var Scale = Real3{1, 1, 1}
+												}
+												Area 
+												{
+													var Size = Real2{88, 32}
+												}
+												UiWidget 
+												{
+													var Size = Real2{88, 32}
+													var SizePolicyX = UiSizePolicy.Flex
+													var VerticalAlignment = UiVerticalAlignment.Center
+												}
+												SpriteText 
+												{
+													var Text = "Philandra Eargle"
+													var TextAlign = TextAlign.Left
+												}
+											}
+										}
+										Sprite [LocallyRemoved]
+										{
+										}
+									}
+								}
+								Sprite [LocallyRemoved]
+								{
+								}
+							}
+							Cog [Id:0x5b3ad57299c74420][InheritId:"59b85f2ec7f74a58:UiSprite"][LocallyAdded][ContextId:16]
+							{
+								var Name = "CreditListing"
+								Transform 
+								{
+									var Translation = Real3{0, -72, 0}
+									var Rotation = Quaternion{0, 0, 0, 1}
+									var Scale = Real3{1, 1, 1}
+								}
+								Area 
+								{
+									var Size = Real2{192, 32}
+								}
+								UiWidget 
+								{
+									var Size = Real2{192, 32}
+									var SizePolicyX = UiSizePolicy.Flex
+									var SizePolicyY = UiSizePolicy.Auto
+								}
+								UiStackLayout [LocallyAdded]
+								{
+									var PaddingLeft = 0
+									var PaddingTop = 0
+									var PaddingRight = 0
+									var PaddingBottom = 0
+									var StackDirection = UiStackLayoutDirection.LeftToRight
+									var Spacing = Real2{16, 0}
+								}
+								Hierarchy [ChildOrderOverride]
+								{
+									Cog [Id:0x5b3adbe0c8b2dce7][InheritId:"59b85fdaced18491:UiSpriteText"][LocallyAdded][ContextId:17]
+									{
+										var Name = "Role"
+										Transform 
+										{
+											var Translation = Real3{0, -8, 0}
+											var Rotation = Quaternion{0, 0, 0, 1}
+											var Scale = Real3{1, 1, 1}
+										}
+										Area 
+										{
+											var Size = Real2{88, 16}
+										}
+										UiWidget 
+										{
+											var Size = Real2{88, 16}
+											var SizePolicyX = UiSizePolicy.Flex
+											var VerticalAlignment = UiVerticalAlignment.Center
+										}
+										SpriteText 
+										{
+											var Text = "Programmer"
+											var TextAlign = TextAlign.Right
+										}
+									}
+									Cog [Id:0x5b3adb20341c16e9][InheritId:"59b85f2ec7f74a58:UiSprite"][LocallyAdded][ContextId:18]
+									{
+										var Name = "ListOfPeople"
+										Transform 
+										{
+											var Translation = Real3{104, 0, 0}
+											var Rotation = Quaternion{0, 0, 0, 1}
+											var Scale = Real3{1, 1, 1}
+										}
+										Area 
+										{
+											var Size = Real2{88, 32}
+										}
+										UiWidget 
+										{
+											var Size = Real2{88, 32}
+											var SizePolicyX = UiSizePolicy.Flex
+											var SizePolicyY = UiSizePolicy.Auto
+											var VerticalAlignment = UiVerticalAlignment.Center
+										}
+										UiStackLayout [LocallyAdded]
+										{
+											var PaddingLeft = 0
+											var PaddingTop = 0
+											var PaddingRight = 0
+											var PaddingBottom = 0
+											var StackDirection = UiStackLayoutDirection.TopToBottom
+											var Spacing = Real2{0, 0}
+										}
+										Hierarchy [ChildOrderOverride]
+										{
+											Cog [Id:0x5b3ad477ec408cfb][InheritId:"59b85fdaced18491:UiSpriteText"][LocallyAdded][ContextId:19]
+											{
+												var Name = "Person"
+												Transform 
+												{
+													var Translation = Real3{0, 0, 0}
+													var Rotation = Quaternion{0, 0, 0, 1}
+													var Scale = Real3{1, 1, 1}
+												}
+												Area 
+												{
+													var Size = Real2{88, 16}
+												}
+												UiWidget 
+												{
+													var Size = Real2{88, 16}
+													var SizePolicyX = UiSizePolicy.Flex
+													var VerticalAlignment = UiVerticalAlignment.Center
+												}
+												SpriteText 
+												{
+													var Text = "Corey Huang"
+													var TextAlign = TextAlign.Left
+												}
+											}
+											Cog [Id:0x5b3ad53cae1c175b][InheritId:"59b85fdaced18491:UiSpriteText"][LocallyAdded][ContextId:20]
+											{
+												var Name = "Person"
+												Transform 
+												{
+													var Translation = Real3{0, -16, 0}
+													var Rotation = Quaternion{0, 0, 0, 1}
+													var Scale = Real3{1, 1, 1}
+												}
+												Area 
+												{
+													var Size = Real2{88, 16}
+												}
+												UiWidget 
+												{
+													var Size = Real2{88, 16}
+													var SizePolicyX = UiSizePolicy.Flex
+													var VerticalAlignment = UiVerticalAlignment.Center
+												}
+												SpriteText 
+												{
+													var Text = "Etienne Bonin"
+													var TextAlign = TextAlign.Left
+												}
+											}
+										}
+										Sprite [LocallyRemoved]
+										{
+										}
+									}
+								}
+								Sprite [LocallyRemoved]
+								{
+								}
+							}
+						}
+						Sprite [LocallyRemoved]
+						{
+						}
+					}
+					Cog [Id:0x5b3adc0f40d5650c][InheritId:"59b85f2ec7f74a58:UiSprite"][LocallyAdded][ContextId:21]
+					{
+						var Name = "SecretPraise"
+						Transform 
+						{
+							var Translation = Real3{-77, 274, 0}
+							var Rotation = Quaternion{0, 0, 0, 1}
+							var Scale = Real3{0.819914222, 0.384992927, 1}
+						}
+						Area 
+						{
+							var Size = Real2{192, 40}
+						}
+						UiWidget 
+						{
+							var OnTop = true
+							var LocalTranslation = Real2{-77, 274}
+							var Size = Real2{192, 40}
+							var LocalColor = Real4{0.215686277, 0.219607845, 0.210000038, 1}
+							var InLayout = false
+							var SizePolicyX = UiSizePolicy.Flex
+							var SizePolicyY = UiSizePolicy.Fixed
+						}
+						Sprite 
+						{
+							var VertexColor = Real4{0.215686277, 0.219607845, 0.210000038, 1}
+						}
+						UiFillLayout [LocallyAdded]
+						{
+							var PaddingLeft = 0
+							var PaddingTop = 0
+							var PaddingRight = 0
+							var PaddingBottom = 0
+						}
+						UiHighlight [LocallyAdded]
+						{
+							var Active = true
+							var MouseMode = UiHighlightMouseMode.EnterHierarchy
+							var MouseOverCog = CogPath
+							{
+								var Path = "."
+								var ErrorOnResolveToNull = false
+								var ErrorOnPathCantCompute = false
+								var ErrorOnDirectLinkFail = false
+								var UpdateCogOnPathChange = true
+								var UpdatePathOnCogChange = true
+								var UpdateCogOnInitialize = true
+								var ResolvedNullErrorOccurred = false
+								var Cog = 21
+								var PathPreference0 = CogPathPreference.CogRelative
+								var PathPreference1 = CogPathPreference.SpaceRelative
+								var PathPreference2 = CogPathPreference.Absolute
+							}
+							var HighlightCog = CogPath
+							{
+								var Path = "."
+								var ErrorOnResolveToNull = false
+								var ErrorOnPathCantCompute = false
+								var ErrorOnDirectLinkFail = false
+								var UpdateCogOnPathChange = true
+								var UpdatePathOnCogChange = true
+								var UpdateCogOnInitialize = true
+								var ResolvedNullErrorOccurred = false
+								var Cog = 21
+								var PathPreference0 = CogPathPreference.CogRelative
+								var PathPreference1 = CogPathPreference.SpaceRelative
+								var PathPreference2 = CogPathPreference.Absolute
+							}
+							var ColorMode = UiHighlightColorMode.Local
+							var MouseHoverColor = Real4{1, 1, 1, 0.200000003}
+							var MouseDownColor = Real4{0, 0, 0, 0.100000001}
+							var AnimateTime = 0.0599999987
+						}
+						UiChangeCursor [LocallyAdded]
+						{
+							var Cursor = Cursor.Hand
+						}
+						Hierarchy [ChildOrderOverride]
+						{
+							Cog [Id:0x5b50a3669561919d][LocallyAdded][ContextId:22]
+							{
+								var Name = "ButtonText"
+								Transform 
+								{
+									var Translation = Real3{0, -9, -7.62939453e-06}
+									var Scale = Real3{1, 1, 1}
+									var Rotation = Quaternion{0, 0, 0, 1}
+								}
+								Area 
+								{
+									var Size = Real2{192, 22}
+									var Origin = Location.TopLeft
+								}
+								UiWidget 
+								{
+									var Active = true
+									var Visible = true
+									var Interactive = true
+									var InLayout = false
+									var OnTop = false
+									var ClipChildren = false
+									var CanTakeFocus = false
+									var LocalColor = Real4{0.215686291, 0.21960786, 0.211764723, 1}
+									var HierarchyColor = Real4{1, 1, 1, 1}
+									var SizePolicyX = UiSizePolicy.Flex
+									var SizePolicyY = UiSizePolicy.Fixed
+									var FlexSize = Real2{1, 1}
+									var AbsoluteMinSize = Real2{1, 1}
+									var VerticalAlignment = UiVerticalAlignment.Center
+									var HorizontalAlignment = UiHorizontalAlignment.Left
+									var MarginLeft = 0
+									var MarginTop = 0
+									var MarginRight = 0
+									var MarginBottom = 0
+									var DockMode = UiDockMode.Left
+								}
+								SpriteText 
+								{
+									var Visible = true
+									var ViewCulling = true
+									var VisibilityEvents = true
+									var OverrideBoundingBox = false
+									var LocalAabbCenter = Real3{0, 0, 0}
+									var LocalAabbHalfExtents = Real3{1, 1, 1}
+									var GroupSortValue = 0
+									var Material = "582c575af53d18c9:AlphaSprite"
+									var VertexColor = Real4{0.215686291, 0.21960786, 0.211764723, 1}
+									var GeometryMode = SpriteGeometryMode.ZPlane
+									var Text = "And Garret"
+									var Font = "587b2f7646ba23d5:NotoSans-Bold"
+									var FontSize = 16
+									var PixelsPerUnit = 1
+									var TextAlign = TextAlign.Center
+								}
+								Hierarchy 
+								{
+								}
+							}
+						}
+					}
+					Cog [Id:0x5b50a02007409737][InheritId:"59b85f2ec7f74a58:UiSprite"][LocallyAdded][ContextId:23]
+					{
+						var Name = "MenuButton"
+						Transform 
+						{
+							var Translation = Real3{-96, -56, 0}
+							var Rotation = Quaternion{0, 0, 0, 1}
+							var Scale = Real3{1, 1, 1}
+						}
+						Area 
+						{
+							var Size = Real2{192, 40}
+						}
+						UiWidget 
+						{
+							var OnTop = true
+							var Size = Real2{192, 40}
+							var LocalColor = Real4{1, 1, 1, 0.100000001}
+							var SizePolicyX = UiSizePolicy.Flex
+							var SizePolicyY = UiSizePolicy.Fixed
+						}
+						UiFillLayout [LocallyAdded]
+						{
+							var PaddingLeft = 0
+							var PaddingTop = 0
+							var PaddingRight = 0
+							var PaddingBottom = 0
+						}
+						UiHighlight [LocallyAdded]
+						{
+							var Active = true
+							var MouseMode = UiHighlightMouseMode.EnterHierarchy
+							var MouseOverCog = CogPath
+							{
+								var Path = "."
+								var ErrorOnResolveToNull = false
+								var ErrorOnPathCantCompute = false
+								var ErrorOnDirectLinkFail = false
+								var UpdateCogOnPathChange = true
+								var UpdatePathOnCogChange = true
+								var UpdateCogOnInitialize = true
+								var ResolvedNullErrorOccurred = false
+								var Cog = 23
+								var PathPreference0 = CogPathPreference.CogRelative
+								var PathPreference1 = CogPathPreference.SpaceRelative
+								var PathPreference2 = CogPathPreference.Absolute
+							}
+							var HighlightCog = CogPath
+							{
+								var Path = "."
+								var ErrorOnResolveToNull = false
+								var ErrorOnPathCantCompute = false
+								var ErrorOnDirectLinkFail = false
+								var UpdateCogOnPathChange = true
+								var UpdatePathOnCogChange = true
+								var UpdateCogOnInitialize = true
+								var ResolvedNullErrorOccurred = false
+								var Cog = 23
+								var PathPreference0 = CogPathPreference.CogRelative
+								var PathPreference1 = CogPathPreference.SpaceRelative
+								var PathPreference2 = CogPathPreference.Absolute
+							}
+							var ColorMode = UiHighlightColorMode.Local
+							var MouseHoverColor = Real4{1, 1, 1, 0.200000003}
+							var MouseDownColor = Real4{0, 0, 0, 0.100000001}
+							var AnimateTime = 0.0599999987
+						}
+						UiChangeCursor [LocallyAdded]
+						{
+							var Cursor = Cursor.Hand
+						}
+						LoadLevelOnClick [LocallyAdded]
+						{
+							var LevelToLoad = "5b3ac1793aca878d:MainMenu"
+						}
+						Hierarchy 
+						{
+							Cog [Id:0x5b3adc3755cc51c6][InheritId:"59b85fdaced18491:UiSpriteText"][LocallyAdded][ContextId:24]
+							{
+								var Name = "ButtonText"
+								Transform 
+								{
+									var Translation = Real3{0, -9, -7.62939453e-06}
+									var Rotation = Quaternion{0, 0, 0, 1}
+									var Scale = Real3{1, 1, 1}
+								}
+								Area 
+								{
+									var Size = Real2{192, 22}
+								}
+								UiWidget 
+								{
+									var Size = Real2{192, 22}
+									var SizePolicyX = UiSizePolicy.Flex
+									var VerticalAlignment = UiVerticalAlignment.Center
+								}
+								SpriteText 
+								{
+									var Text = "Return to Main Menu"
+									var Font = "587b2f7646ba23d5:NotoSans-Bold"
+									var FontSize = 16
+									var TextAlign = TextAlign.Center
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	Cog [ContextId:25]
+	{
+		var Name = "SelectSound"
+		Transform 
+		{
+			var Translation = Real3{250, -272.5, -3.81469727e-06}
+			var Scale = Real3{1, 1, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		SoundEmitter 
+		{
+			var Volume = 1
+			var Pitch = 0
+			var Attenuator = "57ca8a6ad262efe5:DefaultNoAttenuation"
+			var Directional = false
+			var EmitAngle = 90
+			var RearVolume = 0.200000003
+		}
+		SimpleSound 
+		{
+			var StartPlaying = true
+			var Positional = false
+			var Cue = "5b4c9fcdbc82a01c:Select"
+		}
+	}
+}

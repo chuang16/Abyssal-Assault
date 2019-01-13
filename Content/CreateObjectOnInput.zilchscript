@@ -1,0 +1,98 @@
+class CreateObjectOnInput : ZilchComponent
+{
+  sends CreateObject : ZilchEvent;
+  [Property]
+  var CreateObjectKey : Keys = Keys.Z;
+  
+  [Property]
+  var AmmoDrain : Integer = 0;
+
+  var CooldownTimer : Real = 1;
+  var CooldownDuration : Real = 0.3;
+  var Reload : Boolean = false;
+  
+[Property]
+  var ReloadTimer : Real = 3.0;
+  var ReloadDuration : Real = 1.0;
+  
+  [Property]
+  var MaxRemaningAmmo : Integer;
+  var RemainingAmmo : Integer;
+  
+var ConstantReload: Real = 0.5 ;
+var ResetReload: Real= 0.5;
+  [Property]
+  var AmmoLeft : CogPath;
+  
+  [Dependency]
+  var SoundEmitter : SoundEmitter;
+  
+  var BulletSound : SoundCue = SoundCue.Shoot;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+this.RemainingAmmo = this.MaxRemaningAmmo;
+this.AmmoLeft.SpriteText.Text = "Ammo Remaining : `this.RemainingAmmo`";
+
+  }
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    this.CooldownTimer -= event.Dt;
+    if(this.Reload == true)
+        {
+          this.ReloadTimer -= event.Dt;
+          Console.WriteLine(this.ReloadTimer);
+          if(this.ReloadTimer <= 0)
+          {
+            Console.WriteLine("`this.RemainingAmmo`");
+            this.Reload = false;
+            this.ReloadTimer = 3;
+            this.RemainingAmmo =   this.MaxRemaningAmmo;
+            this.AmmoLeft.SpriteText.Text = "Ammo Remaining : `this.RemainingAmmo`";
+          }
+        }
+    
+    if (this.CooldownTimer <= 0)
+    {
+      this.CooldownTimer = 0;
+      
+      if (Zero.Keyboard.KeyIsDown(this.CreateObjectKey))
+      {
+        if (Zero.Keyboard.KeyIsDown(this.CreateObjectKey) && this.Reload == false)
+        {
+          this.SoundEmitter.PlayCue(this.BulletSound);
+        }
+        if(this.Reload == false)
+        {
+          this.Owner.DispatchEvent(Events.CreateObject, ZilchEvent());
+           --this.RemainingAmmo;
+        this.AmmoLeft.SpriteText.Text = "Ammo Remaining : `this.RemainingAmmo`";
+        }
+        this.CooldownTimer = this.CooldownDuration;
+      }
+    }
+    if(Zero.Keyboard.KeyIsDown(Keys.Z))
+      {
+        if(this.Reload == false)
+        {
+          if (this.RemainingAmmo==0)
+          {
+            this.Reload = true;
+          }
+        }
+      }
+       else if(this.RemainingAmmo<this.MaxRemaningAmmo && this.Reload ==false)
+        {
+          
+        this.ConstantReload-=event.Dt;
+        Console.WriteLine(this.ConstantReload);
+        if (this.ConstantReload<= 0)
+        {
+        ++this.RemainingAmmo;
+        this.AmmoLeft.SpriteText.Text = "Ammo Remaining : `this.RemainingAmmo`";
+        this.ConstantReload = this.ResetReload;
+        }
+      }
+  }
+}

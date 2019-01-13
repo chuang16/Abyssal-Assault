@@ -1,0 +1,28 @@
+class BigAnglerBehavior : ZilchComponent
+{
+  var Xposition : Real;
+  var AnglerSpeed : Integer = 2;
+  
+  function Initialize(init : CogInitializer)
+  {
+    this.Xposition = this.Owner.Transform.Translation.X;
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    this.StartAngler();
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+  }
+  
+  function StartAngler()
+  {
+    
+    var startingDirection = Real3(-1, 0, 0);
+  
+    startingDirection = Math.Normalize(startingDirection);
+  
+    startingDirection*=this.AnglerSpeed;
+    
+    this.Owner.RigidBody.Velocity = startingDirection;
+  }
+}

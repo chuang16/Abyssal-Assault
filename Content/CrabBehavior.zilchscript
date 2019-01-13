@@ -1,0 +1,27 @@
+class CrabBehavior : ZilchComponent
+{
+  var Yposition : Real ;
+  var CrabSpeed : Integer = 3;
+  function Initialize(init : CogInitializer)
+  {
+    this.Yposition=this.Owner.Transform.Translation.Y;
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    this.StartCrab();
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    this.Owner.Transform.Translation = Real3 (this.Owner.Transform.Translation.X,this.Yposition,0) ;
+  }
+  
+  function StartCrab()
+  {    
+    var startingDirection = Real3(-1,0,0);
+    
+    startingDirection = Math.Normalize(startingDirection);
+    
+    startingDirection*=this.CrabSpeed;
+    
+    this.Owner.RigidBody.Velocity =startingDirection;
+  }
+}

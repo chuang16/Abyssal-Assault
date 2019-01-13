@@ -1,0 +1,17 @@
+class BackgroundSound : ZilchComponent
+{
+  [Dependency]
+  var SoundEmitter : SoundEmitter;
+  
+  var BackgroundSound : SoundCue = SoundCue.Background;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    this.SoundEmitter.PlayCue(this.BackgroundSound);
+  }
+}

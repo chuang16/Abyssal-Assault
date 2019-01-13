@@ -1,0 +1,95 @@
+[Version:1]
+Cog 
+{
+	var Name = "Angler"
+	Transform 
+	{
+		var Translation = Real3{0.00289154053, 0, -1.25250006}
+		var Scale = Real3{0.75, 0.75, 1}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	Sprite 
+	{
+		var Visible = true
+		var ViewCulling = true
+		var VisibilityEvents = true
+		var OverrideBoundingBox = false
+		var LocalAabbCenter = Real3{0, 0, 0}
+		var LocalAabbHalfExtents = Real3{1, 1, 1}
+		var GroupSortValue = 0
+		var Material = "582c575af53d18c9:AlphaSprite"
+		var VertexColor = Real4{1, 1, 1, 1}
+		var GeometryMode = SpriteGeometryMode.ZPlane
+		var SpriteSource = "5b49710563aae46d:anglerspritesheet_0"
+		var FlipX = false
+		var FlipY = false
+		var AnimationActive = true
+		var AnimationSpeed = 1
+		var StartFrame = 0
+	}
+	RigidBody 
+	{
+		var Velocity = Real3{0, 0, 0}
+		var AngularVelocity = Real3{0, 0, 0}
+		var DynamicState = RigidBodyDynamicState.Dynamic
+		var AllowSleep = true
+		var Asleep = false
+		var RotationLocked = true
+		var Mode2D = Mode2DStates.InheritFromSpace
+	}
+	AnglerBehavior 
+	{
+	}
+	ProjectileDestruction 
+	{
+		var CollisionArchetype = "5b352fb6e3a9e44e:Projectile"
+	}
+	EnemyHealthBar 
+	{
+		var JellyScore = 0
+		var CrabScore = 0
+		var AnglerScore = 750
+		var Health = 4
+	}
+	MultiConvexMeshCollider 
+	{
+		var Ghost = false
+		var SendsEvents = true
+		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+		var CollisionGroup = "5b3fc1caacb016d6:AnglerDetection"
+		var Offset = Real3{0, 0, 0}
+		var Mesh = "5b4971ba018e48d7:Angler1"
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x5b4e21cefea6558a]
+		{
+			var Name = "AnglerGlow"
+			Transform 
+			{
+				var Translation = Real3{-0.594377518, -0.148321152, 3}
+				var Scale = Real3{1.33333337, 1.33333337, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Sprite 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "582c575af53d18c9:AlphaSprite"
+				var VertexColor = Real4{1, 1, 1, 1}
+				var GeometryMode = SpriteGeometryMode.ZPlane
+				var SpriteSource = "5b4e2120e1316806:anglerglowfinal_0"
+				var FlipX = false
+				var FlipY = false
+				var AnimationActive = true
+				var AnimationSpeed = 1
+				var StartFrame = 0
+			}
+		}
+	}
+}

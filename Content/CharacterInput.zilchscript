@@ -1,0 +1,37 @@
+class CharacterLogic : ZilchComponent
+{
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    var speed : Real = 10;
+    var xDir : Real = 0.0;
+    var yDir : Real = 0.0;
+    
+    if(Zero.Keyboard.KeyIsDown(Keys.Right))
+    {
+      xDir += 1.0;
+    }//This makes the character move right
+    
+    if(Zero.Keyboard.KeyIsDown(Keys.Left))
+    {
+      xDir += -1.0;
+    } //This makes the character move left
+    
+    if(Zero.Keyboard.KeyIsDown(Keys.Up))
+    {
+      yDir += 1.0;
+    }//This makes the character move up 
+    
+    if(Zero.Keyboard.KeyIsDown(Keys.Down))
+    {
+      yDir += -1.0;
+    }//This makes the character move down
+    
+    this.Owner.RigidBody.Velocity = Real3(xDir * speed, yDir * speed, -1.0);
+    
+  }
+}
